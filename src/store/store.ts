@@ -1,13 +1,16 @@
 import Vuex,{ StoreOptions} from "vuex";
 import {IUser, user} from "./modules/user";
+import {ICategories, categories} from "./modules/categories";
 
 export interface RootState {
-  user:IUser
+  user:IUser,
+  categories:ICategories
 }
 
 const store: StoreOptions<RootState> = {
   modules:{
-    user
+    user,
+    categories
   }
 }
 
