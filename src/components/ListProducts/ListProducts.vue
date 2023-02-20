@@ -2,8 +2,13 @@
   <section class="section__list">
     <ul class="list" v-if="!loading">
       <li class="list_item" v-for="product in list" :key="product.id">
-        <Card>
-          {{product.title}}
+        <Card class="card">
+          <Product
+              :img="product.image"
+              :price="product.price"
+              :rating="product.rating.rate"
+              :title="product.title"
+          />
         </Card>
       </li>
     </ul>
@@ -17,6 +22,7 @@ import {useProducts} from "../../hooks/useProducts";
 import { useStore} from "vuex";
 import Card from "../UI/Card.vue";
 import Loading from "../UI/Loading.vue";
+import Product from "./Product.vue";
 
 const store = useStore()
 const {list, loading, getProducts} = useProducts(store.state.categories.activeCategories)
@@ -38,6 +44,10 @@ store.watch(state => state.categories.activeCategories,
   display: flex;
 }
 
+.card {
+  height: 350px;
+}
+
 .list {
   display: flex;
   flex-wrap: wrap;
@@ -46,8 +56,8 @@ store.watch(state => state.categories.activeCategories,
   margin: 0;
 
   &_item {
-    width: calc((100%/4) - 20px);
-    margin: 10px;
+    width: calc((100%/4) - 30px);
+    margin: 15px;
   }
 }
 

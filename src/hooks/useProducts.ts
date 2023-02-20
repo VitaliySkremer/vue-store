@@ -22,7 +22,7 @@ export const useProducts = (categories:string) => {
     loading.value = true;
     const categoriesValue = categories? `category/${categories}`:'';
     axios(`https://fakestoreapi.com/products/${categoriesValue}`)
-      .then(data=> list.value = [...list.value, ...data.data])
+      .then(data=> list.value = [...[], ...data.data])
       .catch(error=> console.log(error))
       .finally(()=> loading.value = false)
   }
