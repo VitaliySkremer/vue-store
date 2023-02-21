@@ -1,5 +1,10 @@
 <template>
   <div class="product">
+    <input
+        class="checkbox"
+        type="checkbox"
+        v-model="checked"
+    />
     <img class="img" :src="props.image" alt="logo">
     <div class="main__block">
       <router-link :to="'/product/'+props.id" class="title__price">{{props.title}}</router-link>
@@ -19,6 +24,7 @@
 
 import Button from "../UI/Button.vue";
 import {useStore} from "vuex";
+import {ref, watch} from "vue";
 
 const props = defineProps<{
   id:number,
@@ -30,6 +36,7 @@ const props = defineProps<{
 }>()
 
 const store = useStore();
+const checked = ref(store.state.basket.selectProduct.some((item: { id: number; })=>item.id === props.id))
 const emmit = defineEmits<{
   (e:"deleteProduct", id:number):void
 }>()
@@ -38,6 +45,11 @@ const deleteProduct = () =>{
   store.commit('basket/deleteOutBasket',props.id)
   emmit('deleteProduct',props.id);
 }
+
+watch(checked,(_,oldValue)=>{
+  if(oldValue) store.commit('basket/deleteSelectProduct',props.id)
+  else store.commit('basket/addSelectProduct', {id:props.id, price:props.price})
+})
 
 </script>
 
@@ -76,6 +88,10 @@ const deleteProduct = () =>{
 .rating {
   color: var(--gold);
   font-size: 18px;
+}
+
+.checkbox {
+  margin-right: 10px;
 }
 
 </style>
