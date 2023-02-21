@@ -1,12 +1,14 @@
 import Main from '../pages/Main.vue'
 import Auth from '../pages/Auth.vue'
 import Basket from '../pages/Basket.vue'
+import ProductPage from '../pages/ProductPage.vue'
 import {createRouter, createWebHistory} from "vue-router";
 import store from "../store/store";
 
 const routes = [
   {path:'/', component: Main, name:'main'},
   {path:'/auth', component: Auth, name:'auth'},
+  {path:'/product/:id', component: ProductPage, name:'product'},
   {path:'/basket', component: Basket, name:'basket', meta:{requiresLogin: true}},
 ]
 

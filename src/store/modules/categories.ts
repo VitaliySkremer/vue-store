@@ -16,19 +16,13 @@ export const categories:Module<ICategories, RootState> = {
   }),
   mutations:{
     setCategories(state, data:string[]){
-      state.list= [...state.list, ...data]
+      state.list = [...data]
     },
     setLoading(state, flag:boolean){
       state.loading = flag;
     },
     setActiveCategories(state, value:string){
       state.activeCategories = value;
-    }
-  },
-  getters:{
-    categories(state){
-      console.log(state.activeCategories)
-      return state.activeCategories
     }
   },
   actions:{

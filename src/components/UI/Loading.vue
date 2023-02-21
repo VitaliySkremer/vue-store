@@ -14,6 +14,7 @@
   border-right: 15px solid transparent;
   width: 100px;
   height: 100px;
+  align-self: center;
   animation: loading 1s infinite ease;
   margin: auto;
 }

@@ -3,9 +3,9 @@
     <img class="img" :src="props.img" loading="lazy" :alt="props.price">
     <p class="title">{{props.title}}</p>
     <div class="more">
-      <Button>Сведения</Button>
+      <Button @click="$router.push(`/product/${props.id}`)" class="link">Подробнее</Button>
       <div>
-        <span class="price">{{props.price.toLocaleString('ru-RU',{ style: 'currency', currency: 'RUB' })}}</span>
+        <span class="price">{{props.price.toLocaleString('en-US',{ style: 'currency', currency: 'USD' })}}</span>
         <span class="rating">{{props.rating}}</span>
       </div>
     </div>
@@ -17,6 +17,7 @@
 import Button from "../UI/Button.vue";
 
 const props = defineProps<{
+  id:number;
   title: string;
   img: string;
   rating:number;
@@ -51,6 +52,10 @@ const props = defineProps<{
 
 .rating {
   color: var(--gold);
+}
+
+.link {
+  font-size: 14px;
 }
 
 </style>

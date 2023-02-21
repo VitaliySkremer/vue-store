@@ -4,6 +4,7 @@
       <li class="list_item" v-for="product in list" :key="product.id">
         <Card class="card">
           <Product
+              :id="product.id"
               :img="product.image"
               :price="product.price"
               :rating="product.rating.rate"
@@ -12,12 +13,11 @@
         </Card>
       </li>
     </ul>
-    <Loading class="loading" v-else/>
+    <Loading v-else/>
   </section>
 </template>
 
 <script setup lang="ts">
-
 import {useProducts} from "../../hooks/useProducts";
 import { useStore} from "vuex";
 import Card from "../UI/Card.vue";
@@ -29,7 +29,6 @@ const {list, loading, getProducts} = useProducts(store.state.categories.activeCa
 
 store.watch(state => state.categories.activeCategories,
     (newValue)=>{
-  console.log(newValue)
       getProducts(newValue)
     })
 
@@ -45,7 +44,7 @@ store.watch(state => state.categories.activeCategories,
 }
 
 .card {
-  height: 350px;
+  height: 100%;
 }
 
 .list {
@@ -54,15 +53,13 @@ store.watch(state => state.categories.activeCategories,
   list-style: none;
   padding: 0;
   margin: 0;
+  height: fit-content;
 
   &_item {
     width: calc((100%/4) - 30px);
     margin: 15px;
+    height: 350px;
   }
-}
-
-.loading {
-  align-self: center;
 }
 
 </style>

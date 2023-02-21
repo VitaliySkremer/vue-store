@@ -27,6 +27,7 @@ const store = useStore()
   background-color: var(--main-color);
   display: flex;
   align-items: center;
+  min-height: 60px;
   &_wrapper {
     display: flex;
     align-items: center;
